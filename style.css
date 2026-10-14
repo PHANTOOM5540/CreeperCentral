@@ -1,0 +1,106 @@
+h1 {
+    font-size: 50px;
+	text-align: center;
+	letter-spacing: 5px;
+	font-weight: bold;
+}
+
+body {
+    /* Remet votre image locale */
+    background-image: url("fond.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+/* Le voile noir qui crée l'animation de démarrage */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 9999;
+    pointer-events: none;
+    animation: fadeOutBlack 2s ease-in-out forwards;
+}
+
+/* Style de vos textes */
+h1, h2 {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+    font-size: 25px;
+}
+
+/* Logique de l'animation de fondu */
+@keyframes fadeOutBlack {
+    0% {
+        opacity: 1; /* Écran totalement noir */
+    }
+    100% {
+        opacity: 0; /* Le noir s'efface complètement */
+    }
+}
+
+/* Style de la barre du haut */
+.barre-haut {
+    display: flex;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Style de chaque section (onglet) de la barre */
+.onglet {
+    flex: 1; /* Coupe la barre en sections parfaitement égales */
+    padding: 15px;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+/* Style quand on passe la souris sur une section */
+.onglet:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Style de la section qui est actuellement sélectionnée */
+.onglet.active {
+    color: #55ff55; /* Vert Minecraft (ou la couleur de votre choix) */
+    border-bottom: 3px solid #55ff55;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Espace pour éviter que les menus soient cachés sous la barre du haut */
+.conteneur-menus {
+    margin-top: 80px; 
+}
+
+/* Par défaut, on cache tous les contenus des menus */
+.menu-contenu {
+    display: none;
+}
+
+/* On affiche uniquement le menu qui possède la classe "active" */
+.menu-contenu.active {
+    display: block;
+}
