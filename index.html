@@ -85,6 +85,16 @@
             display: block;
         }
 
+        /* Arrière-plan personnalisé pour la section Actus Officielles */
+        #actus {
+            background-image: url('fond_actus.png');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: calc(100vh - 65px); /* Remplit l'écran sous la barre de menu */
+        }
+
         /* Conteneur pour les miniatures vidéos cliquables */
         .conteneur-videos {
             display: flex;
@@ -98,7 +108,7 @@
         .carte-video {
             display: block;
             width: 440px;
-            background: #252525;
+            background: rgba(37, 37, 37, 0.85); /* Légère transparence pour laisser deviner le fond */
             border: 3px solid #333;
             border-radius: 8px;
             text-decoration: none;
@@ -106,6 +116,7 @@
             overflow: hidden;
             transition: transform 0.2s, border-color 0.2s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px); /* Floute légèrement l'arrière-plan derrière les cartes */
         }
         .carte-video:hover {
             transform: scale(1.03);
@@ -180,11 +191,11 @@
             <h1>Yooooooo ! Bienvenue sur Creeper Central !</h1>
         </div>
 
-        <!-- SECTION ACTUS OFFICIELS -->
+        <!-- SECTION ACTUS OFFICIELLES (avec fond_actus.png) -->
         <div id="actus" class="menu-contenu">
-            <h1>Actus Officielles</h1>
-            <h2>Retrouvez ici les dernières nouveautés, mises à jour et snapshots de Minecraft :</h2>
-            <h3 style="margin-top: 30px; font-size: 20px;">🎬 Bandes-annonces officielles : Mises à jour à venir !</h3>
+            <h1 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Actus Officielles</h1>
+            <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Retrouvez ici les dernières nouveautés, mises à jour et snapshots de Minecraft :</h2>
+            <h3 style="margin-top: 30px; font-size: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">🎬 Bandes-annonces officielles : Mises à jour à venir !</h3>
 
             <div class="conteneur-videos">
                 <!-- Vidéo 1 -->
@@ -257,11 +268,3 @@
             sonClic.play().catch(e => console.log("Erreur clic:", e));
 
             document.querySelectorAll('.menu-contenu').forEach(menu => menu.classList.remove('active'));
-            document.querySelectorAll('.onglet').forEach(onglet => onglet.classList.remove('active'));
-
-            document.getElementById(idMenu).classList.add('active');
-            elementClique.classList.add('active');
-        }
-    </script>
-</body>
-</html>
