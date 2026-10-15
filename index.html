@@ -14,11 +14,12 @@
             font-family: sans-serif;
             color: white;
         }
-        /* Style pour l'écran de démarrage */
+        /* Style pour l'écran de démarrage avec l'image de fond */
         #ecran-demarrage {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: url('fond_de_démarage.jpeg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -33,7 +34,7 @@
             max-width: 600px;
             line-height: 1.4;
             font-weight: normal;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0, 0, 0, 0.8);
         }
         #btn-entrer {
             padding: 15px 30px;
@@ -44,7 +45,7 @@
             cursor: pointer;
             border-radius: 4px;
             font-weight: bold;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
         #btn-entrer:hover {
             background: #4a7527;
@@ -169,7 +170,7 @@
         </div>
     </div>
 
-    <!-- Balises audio - L'attribut 'loop' est bien présent ici pour la musique zen -->
+    <!-- Balises audio -->
     <audio id="son-levelup" src="levelup.mp3" preload="auto"></audio>
     <audio id="musique-zen" src="wet_hands.mp3" preload="auto" loop></audio>
 
@@ -182,25 +183,20 @@
         var musiqueFond = document.getElementById('musique-zen');
 
         function demarrerSite() {
-            // Masquer l'écran de démarrage
             document.getElementById('ecran-demarrage').style.display = 'none';
             
-            // 1. Lancement immédiat de Level Up
             levelUpAudio.currentTime = 0;
             levelUpAudio.play().catch(e => console.log("Erreur levelup:", e));
 
-            // 2. SÉCURITÉ NAVIGATEUR : On force l'activation de la boucle musicale en arrière-plan
             musiqueFond.volume = 0;
-            musiqueFond.loop = true; // On s'assure via script que la boucle est active
+            musiqueFond.loop = true;
             musiqueFond.play().then(() => {
                 musiqueFond.pause();
-                musiqueFond.volume = 0.50; // Volume réglé à 50%
+                musiqueFond.volume = 0.50;
             }).catch(e => console.log("Échec de la pré-autorisation audio :", e));
         }
 
-        // Dès que levelup.mp3 se termine
         levelUpAudio.addEventListener('ended', function() {
-            console.log("Fin de Level Up ! Lancement de Wet Hands en boucle...");
             musiqueFond.play().catch(e => console.log("Erreur lors du lancement automatique de wet_hands:", e));
         });
 
