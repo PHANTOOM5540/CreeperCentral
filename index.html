@@ -145,6 +145,16 @@
         .liste-classement a:hover {
             color: #4a7527;
         }
+
+        /* Styles spécifiques pour la zone de commandes */
+        .bloc-commande {
+            background: #252525;
+            border: 2px dashed #5c8e32;
+            padding: 20px;
+            border-radius: 6px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
@@ -158,7 +168,8 @@
     <!-- 1. LA BARRE DU HAUT -->
     <div class="barre-haut">
         <button class="onglet active" onclick="changerMenu('accueil', this)">Accueil</button>
-        <button class="onglet" onclick="changerMenu('actus', this)">Actus Officiels</button>
+        <button class="onglet" onclick="changerMenu('actus', this)">Actus Officielles</button>
+        <button class="onglet" onclick="changerMenu('commandes', this)">Commandes</button>
         <button class="onglet" onclick="changerMenu('classement', this)">Classement sites MC</button>
     </div>
 
@@ -171,22 +182,31 @@
 
         <!-- SECTION ACTUS OFFICIELS -->
         <div id="actus" class="menu-contenu">
-            <h1>Actus Officiels</h1>
+            <h1>Actus Officielles</h1>
             <h2>Retrouvez ici les dernières nouveautés, mises à jour et snapshots de Minecraft :</h2>
             <h3 style="margin-top: 30px; font-size: 20px;">🎬 Bandes-annonces officielles : Mises à jour à venir !</h3>
 
             <div class="conteneur-videos">
-                <!-- Vidéo 1 : Liée à votre fichier pdp_icecave.png -->
+                <!-- Vidéo 1 -->
                 <a class="carte-video" href="https://youtube.com" target="_blank">
                     <img class="image-miniature" src="pdp_icecave.png" alt="Miniature Ice Caves">
                     <div class="titre-video">▶ Regarder : Face Off in the Ice Caves | Minecraft Live</div>
                 </a>
 
-                <!-- Vidéo 2 : Liée à votre fichier pdp_minecraftpark.png -->
+                <!-- Vidéo 2 -->
                 <a class="carte-video" href="https://youtube.com" target="_blank">
                     <img class="image-miniature" src="pdp_minecraftpark.png" alt="Miniature Minecraft World">
                     <div class="titre-video">▶ Regarder : Minecraft | The Pale Garden & The Creaking</div>
                 </a>
+            </div>
+        </div>
+
+        <!-- SECTION COMMANDES -->
+        <div id="commandes" class="menu-contenu">
+            <h1>Générateurs et Astuces de Commandes</h1>
+            <h2>Optimisez votre triche légale ou vos blocs de commandes !</h2>
+            <div class="bloc-commande">
+                <p>Espace réservé pour vos futurs outils (Générateur de <code>/give</code>, <code>/summon</code>, éditeur JSON textuel...).</p>
             </div>
         </div>
 
@@ -196,7 +216,7 @@
             <h2>Les joueurs Minecraft aiment personnaliser leur aventure. Voici une sélection des meilleurs outils :</h2>
 
             <ul class="liste-classement">
-                <li>🥇 <a href="https://mc-tools.net" target="_blank">McTools</a> - Créations de skins, convertisseurs de mods, etc.</li>
+                <li>🥇 <a href="https://mc-tools.net" target="_blank">MCTools</a> - Créations de skins, convertisseurs de mods, etc.</li>
                 <li>🥈 <a href="https://minecraft.tools" target="_blank">Minecraft Tools</a> - Axé sur les commandes et générateurs de têtes...</li>
                 <li>🥉 <a href="https://namemc.com" target="_blank">NameMC</a> - Suivi des pseudos, skins et serveurs Minecraft.</li>
             </ul>
