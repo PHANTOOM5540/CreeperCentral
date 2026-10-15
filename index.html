@@ -2,25 +2,30 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>SiteDePHANTOOM</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Creeper Central FR</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #1a1a1a;
+            font-family: sans-serif;
+            color: white;
+        }
         /* Style pour l'écran de démarrage */
         #ecran-demarrage {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('fond_de_démarage.jpeg') no-repeat center center fixed; 
-            background-size: cover;
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            color: white;
-            font-family: sans-serif;
             text-align: center;
             padding: 20px;
-            box-sizing: border-box;
         }
         #ecran-demarrage h1 {
             margin-bottom: 25px;
@@ -45,26 +50,56 @@
             background: #4a7527;
         }
 
+        /* Barre du haut */
+        .barre-haut {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background: #111;
+            padding: 15px;
+        }
+        .onglet {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .onglet.active, .onglet:hover {
+            background: #5c8e32;
+        }
+
+        /* Menus */
+        .menu-contenu {
+            display: none;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .menu-contenu.active {
+            display: block;
+        }
+
         /* Conteneur flexible pour mettre les vidéos côte à côte */
         .conteneur-videos {
             display: flex;
             justify-content: center;
-            gap: 20px; /* Espace entre les deux vidéos */
-            flex-wrap: wrap; /* S'adapte si l'écran est trop petit */
+            gap: 20px;
+            flex-wrap: wrap;
             margin-top: 20px;
-            padding: 0 10px;
         }
 
-        /* Style spécifique pour que la liste du classement soit centrée et blanche */
+        /* Style de la liste du classement */
         .liste-classement {
-            list-style-type: none; 
-            padding: 0; 
+            list-style-type: none;
+            padding: 0;
             line-height: 2.5;
             text-align: center;
             color: white;
             font-size: 18px;
+            margin-top: 20px;
         }
-        /* Style pour les liens internet dans le classement */
         .liste-classement a {
             color: #5c8e32;
             text-decoration: underline;
@@ -77,37 +112,33 @@
 </head>
 <body>
 
-    <!-- ÉCRAN DE DÉMARRAGE OBLIGATOIRE POUR DEBLOQUER LE SON -->
+    <!-- ÉCRAN DE DÉMARRAGE -->
     <div id="ecran-demarrage">
-        <h1>Bienvenue sur le site PHANTOOM, un site de conseils, de snapshot etc.</h1>
+        <h1>Bienvenue sur Creeper Central, un site de conseils, de snapshots et plus encore !</h1>
         <button id="btn-entrer" onclick="demarrerSite()">Entrer sur le site</button>
     </div>
 
-    <!-- 1. LA BARRE DU HAUT DECOUPÉE EN SECTIONS -->
+    <!-- 1. LA BARRE DU HAUT -->
     <div class="barre-haut">
         <button class="onglet active" onclick="changerMenu('accueil', this)">Accueil</button>
         <button class="onglet" onclick="changerMenu('actus', this)">Actus Officiels</button>
         <button class="onglet" onclick="changerMenu('classement', this)">Classement sites MC</button>
     </div>
 
-    <!-- 2. LES CONTENEURS DE VOS MENUS -->
+    <!-- 2. LES CONTENEURS DE MENUS -->
     <div class="conteneur-menus">
         <!-- SECTION ACCUEIL -->
         <div id="accueil" class="menu-contenu active">
-            <h1>Yooooooo !</h1>
-            <h2></h2>
+            <h1>Yooooooo ! Bienvenue sur Creeper Central !</h1>
         </div>
 
         <!-- SECTION ACTUS OFFICIELS -->
         <div id="actus" class="menu-contenu">
             <h1>Actus Officiels</h1>
             <h2>Retrouvez ici les dernières nouveautés, mises à jour et snapshots de Minecraft :</h2>
-            
-            <h3 style="color: white; text-align: center; margin-top: 30px; font-size: 20px;">🎬 Bandes-annonces officielles : Mises à jour à venir !</h3>
-            
-            <!-- Les deux lecteurs vidéo officiels intégrés et débloqués côte à côte -->
+            <h3 style="margin-top: 30px; font-size: 20px;">🎬 Bandes-annonces officielles : Mises à jour à venir !</h3>
+
             <div class="conteneur-videos">
-                <!-- Vidéo 1 : Bundles & Bravery (Version débloquée pour visionnage direct sur le site) -->
                 <iframe width="500" height="280" 
                         src="https://youtube.com" 
                         title="Minecraft | Bundles & Bravery Update" 
@@ -115,8 +146,6 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
                         allowfullscreen>
                 </iframe>
-                
-                <!-- Vidéo 2 : Pale Garden & Creaking (Version débloquée pour visionnage direct sur le site) -->
                 <iframe width="500" height="280" 
                         src="https://youtube.com" 
                         title="Minecraft | The Pale Garden & The Creaking" 
@@ -130,44 +159,38 @@
         <!-- SECTION CLASSEMENT DES MEILLEURS SITES MINECRAFT -->
         <div id="classement" class="menu-contenu">
             <h1>Classement des Meilleurs sites Minecraft</h1>
-            <h2>Les Joueurs Minecraft, obsédés par la création et la personnalisation, créent des sites webs consacrés à ça ! Donc si vous avez envie de personnaliser votre aventure mais que vous ne savez pas quel site choisir, je vous ai fait une liste des meilleurs sites Minecraft juste ici !</h2>
-            
+            <h2>Les joueurs Minecraft aiment personnaliser leur aventure. Voici une sélection des meilleurs outils :</h2>
+
             <ul class="liste-classement">
-                <li>🥇 <a href="https://mc-tools.net" target="_blank">McTools</a> - Créations de skins, convertisseurs de mods etc...</li>
-                <li>🥈 <a href="https://minecraft.tools" target="_blank">Minecraft Tools</a> - Plus axé sur les commandes, générateurs pour obtenir la tête d'un joueur...</li>
-                <li>🥉 [Ajoute ton troisième site ici...]</li>
+                <li>🥇 <a href="https://mc-tools.net" target="_blank">McTools</a> - Créations de skins, convertisseurs de mods, etc.</li>
+                <li>🥈 <a href="https://minecraft.tools" target="_blank">Minecraft Tools</a> - Axé sur les commandes et générateurs de têtes...</li>
+                <li>🥉 <a href="https://namemc.com" target="_blank">NameMC</a> - Suivi des pseudos, skins et serveurs Minecraft.</li>
             </ul>
         </div>
     </div>
 
-    <!-- Les balises audio -->
+    <!-- Balises audio -->
     <audio id="son-levelup" src="levelup.mp3" preload="auto"></audio>
     <audio id="musique-zen" src="wet_hands.mp3" preload="auto" loop></audio>
 
     <script>
-        // Chargement du son de clic Minecraft
         var sonClic = new Audio('minecraft_click.mp3');
         sonClic.load();
 
         var levelUpAudio = document.getElementById('son-levelup');
         var musiqueFond = document.getElementById('musique-zen');
-        
-        // Volume réglé à 50% pour la musique de fond
-        musiqueFond.volume = 0.50; 
+        musiqueFond.volume = 0.50;
 
-        // Fonction de démarrage au clic
         function demarrerSite() {
             document.getElementById('ecran-demarrage').style.display = 'none';
             levelUpAudio.currentTime = 0;
             levelUpAudio.play().catch(e => console.log("Erreur levelup:", e));
         }
 
-        // Enchaînement : Quand levelup se termine, wet_hands prend le relais
         levelUpAudio.addEventListener('ended', function() {
             musiqueFond.play().catch(e => console.log("Erreur wet_hands:", e));
         });
 
-        // Gestion du clic sur les onglets
         function changerMenu(idMenu, elementClique) {
             sonClic.currentTime = 0;
             sonClic.play().catch(e => console.log("Erreur clic:", e));
@@ -179,6 +202,5 @@
             elementClique.classList.add('active');
         }
     </script>
-
 </body>
 </html>
