@@ -122,7 +122,7 @@
     <div class="barre-haut">
         <button class="onglet active" onclick="changerMenu('accueil', this)">Accueil</button>
         <button class="onglet" onclick="changerMenu('actus', this)">Actus Officiels</button>
-        <button class="onglet" onclick="changerMenu('classement', this)">Classement sites MC</button>
+        <button class="onglet" onclick="classement", this)">Classement sites MC</button>
     </div>
 
     <!-- 2. LES CONTENEURS DE MENUS -->
@@ -174,21 +174,34 @@
     <audio id="musique-zen" src="wet_hands.mp3" preload="auto" loop></audio>
 
     <script>
+        // Chargement du son de clic
         var sonClic = new Audio('minecraft_click.mp3');
         sonClic.load();
 
         var levelUpAudio = document.getElementById('son-levelup');
         var musiqueFond = document.getElementById('musique-zen');
-        musiqueFond.volume = 0.50;
 
         function demarrerSite() {
+            // Masquer l'écran de démarrage
             document.getElementById('ecran-demarrage').style.display = 'none';
+            
+            // 1. On joue le son Level Up
             levelUpAudio.currentTime = 0;
             levelUpAudio.play().catch(e => console.log("Erreur levelup:", e));
+
+            // 2. ASTUCE : On "force" le navigateur à pré-autoriser la musique de fond immédiatement
+            // On la lance muette, puis on la met en pause tout de suite.
+            musiqueFond.volume = 0;
+            musiqueFond.play().then(() => {
+                musiqueFond.pause();
+                musiqueFond.volume = 0.50; // On remet le volume à 50% prêt pour la suite
+            }).catch(e => console.log("Pré-autorisation musique échouée:", e));
         }
 
+        // Quand le son levelup est complètement terminé
         levelUpAudio.addEventListener('ended', function() {
-            musiqueFond.play().catch(e => console.log("Erreur wet_hands:", e));
+            // On lance proprement la musique de fond
+            musiqueFond.play().catch(e => console.log("Erreur wet_hands lors de l'enchaînement:", e));
         });
 
         function changerMenu(idMenu, elementClique) {
@@ -204,3 +217,4 @@
     </script>
 </body>
 </html>
+
