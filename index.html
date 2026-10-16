@@ -92,7 +92,7 @@
             background-position: center top;
             background-size: cover;
             background-attachment: fixed;
-            min-height: calc(100vh - 65px); /* Remplit l'écran sous la barre de menu */
+            min-height: calc(100vh - 65px);
         }
 
         /* Conteneur pour les miniatures vidéos cliquables */
@@ -108,7 +108,7 @@
         .carte-video {
             display: block;
             width: 440px;
-            background: rgba(37, 37, 37, 0.85); /* Légère transparence pour laisser deviner le fond */
+            background: rgba(37, 37, 37, 0.85);
             border: 3px solid #333;
             border-radius: 8px;
             text-decoration: none;
@@ -116,7 +116,7 @@
             overflow: hidden;
             transition: transform 0.2s, border-color 0.2s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px); /* Floute légèrement l'arrière-plan derrière les cartes */
+            backdrop-filter: blur(4px);
         }
         .carte-video:hover {
             transform: scale(1.03);
@@ -181,7 +181,7 @@
         <button class="onglet active" onclick="changerMenu('accueil', this)">Accueil</button>
         <button class="onglet" onclick="changerMenu('actus', this)">Actus Officielles</button>
         <button class="onglet" onclick="changerMenu('commandes', this)">Commandes</button>
-        <button class="onglet" onclick="changerMenu('classement', this)">Classement sites MC</button>
+        <button class="onglet" onclick="classement', this)">Classement sites MC</button>
     </div>
 
     <!-- 2. LES CONTENEURS DE MENUS -->
@@ -191,7 +191,7 @@
             <h1>Yooooooo ! Bienvenue sur Creeper Central !</h1>
         </div>
 
-        <!-- SECTION ACTUS OFFICIELLES (avec fond_actus.png) -->
+        <!-- SECTION ACTUS OFFICIELLES -->
         <div id="actus" class="menu-contenu">
             <h1 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Actus Officielles</h1>
             <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Retrouvez ici les dernières nouveautés, mises à jour et snapshots de Minecraft :</h2>
@@ -221,7 +221,7 @@
             </div>
         </div>
 
-        <!-- SECTION CLASSEMENT DES MEILLEURS SITES MINECRAFT -->
+        <!-- SECTION CLASSEMENT -->
         <div id="classement" class="menu-contenu">
             <h1>Classement des Meilleurs sites Minecraft</h1>
             <h2>Les joueurs Minecraft aiment personnaliser leur aventure. Voici une sélection des meilleurs outils :</h2>
@@ -246,25 +246,34 @@
         var musiqueFond = document.getElementById('musique-zen');
 
         function demarrerSite() {
+            // Masquer l'écran d'accueil
             document.getElementById('ecran-demarrage').style.display = 'none';
             
+            // Jouer le son de Level Up
             levelUpAudio.currentTime = 0;
             levelUpAudio.play().catch(e => console.log("Erreur levelup:", e));
 
-            musiqueFond.volume = 0;
-            musiqueFond.loop = true;
-            musiqueFond.play().then(() => {
-                musiqueFond.pause();
-                musiqueFond.volume = 0.50;
-            }).catch(e => console.log("Échec de la pré-autorisation audio :", e));
+            // Lancer la musique de fond Wet Hands proprement
+            musiqueFond.volume = 0.40;
+            musiqueFond.play().catch(e => console.log("Erreur musique:", e));
         }
 
-        levelUpAudio.addEventListener('ended', function() {
-            musiqueFond.play().catch(e => console.log("Erreur lors du lancement automatique de wet_hands:", e));
-        });
-
         function changerMenu(idMenu, elementClique) {
+            // Jouer le son de clic Minecraft
             sonClic.currentTime = 0;
             sonClic.play().catch(e => console.log("Erreur clic:", e));
 
-            document.querySelectorAll('.menu-contenu').forEach(menu => menu.classList.remove('active'));
+            // Masquer toutes les rubriques
+            document.querySelectorAll('.menu-contenu').forEach(menu => {
+                menu.classList.remove('active');
+            });
+
+            // Désactiver tous les onglets
+            document.querySelectorAll('.onglet').forEach(onglet => {
+                onglet.classList.remove('active');
+            });
+
+            // Activer la bonne rubrique et le bon onglet
+            document.getElementById(idMenu).classList.add('active');
+            elementClique.classList.add('active');
+        }
